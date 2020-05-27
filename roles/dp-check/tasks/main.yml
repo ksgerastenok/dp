@@ -1,0 +1,30 @@
+---
+- name: "[Local] dp_check"
+  block:
+  - name: "[Local] stat"
+    local_action:
+      module: "stat"
+      path: "{{ ansible_install | dirname }}/{{ ansible_install | basename }}"
+      follow: "true"
+    register: "distrib"
+  when:
+  - "((ansible_install is defined))"
+
+- name: "[Local] dp_check"
+  block:
+  - name: "[Local] config_compare"
+    local_action:
+      module: "datapower"
+      actions:
+      - action: "config_compare"
+      connect:
+        host: "{{ ansible_host }}"
+        port: "{{ ansible_port }}"
+        user: "{{ ansible_user }}"
+        passwd: "{{ ansible_password }}"
+        domain: "{{ ansible_domain }}"
+      options:
+        policy: "{{ ansible_policy }}"
+        src: "{{ ansible_install | dirname }}/{{ ansible_install | basename }}"
+  when:
+  - "((distrib['stat']['exists']))"
