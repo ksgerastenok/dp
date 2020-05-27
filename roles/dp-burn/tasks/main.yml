@@ -1,0 +1,104 @@
+---
+- name: "[Local] dp_burn"
+  block:
+  - name: "[Local] stat"
+    local_action:
+      module: "stat"
+      path: "{{ ansible_install | dirname }}/{{ ansible_install | basename }}"
+      follow: "true"
+    register: "distrib"
+  when:
+  - "((ansible_install is defined))"
+
+- name: "[Local] dp_burn"
+  block:
+  - name: "[Local] domain_stop"
+    local_action:
+      module: "datapower"
+      actions:
+      - action: "check_create"
+      - action: "cache_xml"
+      - action: "config_save"
+      connect:
+        host: "{{ ansible_host }}"
+        port: "{{ ansible_port }}"
+        user: "{{ ansible_user }}"
+        passwd: "{{ ansible_password }}"
+        domain: "{{ ansible_domain }}"
+  when:
+  - "((distrib['stat']['exists']))"
+
+- name: "[Local] dp_burn"
+  block:
+  - name: "[Local] set_fact"
+    local_action:
+      module: "set_fact"
+      result: "SUCCESS"
+  - name: "[Local] config_import"
+    local_action:
+      module: "datapower"
+      actions:
+      - action: "config_compare"
+      - action: "config_import"
+      connect:
+        host: "{{ ansible_host }}"
+        port: "{{ ansible_port }}"
+        user: "{{ ansible_user }}"
+        passwd: "{{ ansible_password }}"
+        domain: "{{ ansible_domain }}"
+      options:
+        policy: "{{ ansible_policy }}"
+        src: "{{ ansible_install | dirname }}/{{ ansible_install | basename }}"
+  rescue:
+  - name: "[Local] set_fact"
+    local_action:
+      module: "set_fact"
+      result: "FAILED"
+  - name: "[Local] check_restore"
+    local_action:
+      module: "datapower"
+      actions:
+      - action: "check_restore"
+      connect:
+        host: "{{ ansible_host }}"
+        port: "{{ ansible_port }}"
+        user: "{{ ansible_user }}"
+        passwd: "{{ ansible_password }}"
+        domain: "{{ ansible_domain }}"
+  when:
+  - "((distrib['stat']['exists']))"
+
+- name: "[Local] dp_burn"
+  block:
+  - name: "[Local] domain_start"
+    local_action:
+      module: "datapower"
+      actions:
+      - action: "config_save"
+      - action: "cache_xsl"
+      - action: "check_delete"
+      connect:
+        host: "{{ ansible_host }}"
+        port: "{{ ansible_port }}"
+        user: "{{ ansible_user }}"
+        passwd: "{{ ansible_password }}"
+        domain: "{{ ansible_domain }}"
+  when:
+  - "((distrib['stat']['exists']))"
+
+- name: "[Local] dp_burn"
+  block:
+  - name: "[Local] fail"
+    local_action:
+      module: "fail"
+      msg: "Failed."
+    when:
+    - "((result in ['FAILED']))"
+  - name: "[Local] debug"
+    local_action:
+      module: "debug"
+      msg: "Success."
+    when:
+    - "((result in ['SUCCESS']))"
+  when:
+  - "((distrib['stat']['exists']))"
