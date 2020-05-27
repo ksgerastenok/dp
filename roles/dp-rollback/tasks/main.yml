@@ -1,0 +1,17 @@
+---
+- name: "[Local] dp_rollback"
+  block:
+  - name: "[Local] backup_restore"
+    local_action:
+      module: "datapower"
+      actions:
+      - action: "backup_restore"
+      - action: "config_save"
+      connect:
+        host: "{{ ansible_host }}"
+        port: "{{ ansible_port }}"
+        user: "{{ ansible_user }}"
+        passwd: "{{ ansible_password }}"
+        domain: "{{ ansible_domain }}"
+  when:
+  - "((ansible_domain is defined))"
