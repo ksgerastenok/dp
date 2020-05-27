@@ -1,0 +1,7 @@
+---
+- name: "Deploy DP."
+  hosts: "IGW"
+  serial: "15"
+  gather_facts: "false"
+  roles:
+  - role: "dp-deploy"
