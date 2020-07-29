@@ -9,7 +9,7 @@
 		<display-product>XI52</display-product>
 		<model>DataPower XI50</model>
 		<display-model>DataPower XI52</display-model>
-		<device-name>10.116.6.244:9090</device-name>
+		<device-name>1.1.1.1:9090</device-name>
 		<serial-number>0000000</serial-number>
 		<firmware-version>XI50.7.2.0.8</firmware-version>
 		<display-firmware-version>XI52.7.2.0.8</display-firmware-version>
@@ -23,7 +23,7 @@
 		<custom-ui-file/>
 	</export-details>
 	<interface-data>
-		<interface name="eth0" type="Ethernet" vers="ipv4" ip-addr="10.116.6.244"/>
+		<interface name="eth0" type="Ethernet" vers="ipv4" ip-addr="1.1.1.1"/>
 	</interface-data>
 	<configuration domain="ZUNIPAY">
 		<CryptoCertificate name="CC.IC.CP.MQQM.EPS" xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/schemas/management">
@@ -244,7 +244,7 @@
 		</SSLClientProfile>
 		<MQQM name="MQQM.EPS.1" xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/schemas/management">
 			<mAdminState>enabled</mAdminState>
-			<HostName>10.130.131.124:1414</HostName>
+			<HostName>1.1.1.1:1111</HostName>
 			<QMname>IGW.DMZ1.PAYGW.1</QMname>
 			<CCSID>1208</CCSID>
 			<ChannelName>ESB.GW.EPS.T</ChannelName>
@@ -275,7 +275,7 @@
 		</MQQM>
 		<MQQM name="MQQM.EPS.2" xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/schemas/management">
 			<mAdminState>enabled</mAdminState>
-			<HostName>10.130.131.124:1414</HostName>
+			<HostName>1.1.1.1:1111</HostName>
 			<QMname>IGW.DMZ1.PAYGW.1</QMname>
 			<CCSID>1208</CCSID>
 			<ChannelName>ESB.GW.EPS.T</ChannelName>
@@ -360,7 +360,7 @@
 		</SSLClientProfile>
 		<MQQM name="MQQM.LOG.1" xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/schemas/management">
 			<mAdminState>enabled</mAdminState>
-			<HostName>10.130.131.124:1414</HostName>
+			<HostName>1.1.1.1:1111</HostName>
 			<QMname>IGW.DMZ1.PAYGW.1</QMname>
 			<CCSID>1208</CCSID>
 			<ChannelName>ESB.GW.EPS.T</ChannelName>
@@ -391,7 +391,7 @@
 		</MQQM>
 		<MQQM name="MQQM.LOG.2" xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/schemas/management">
 			<mAdminState>enabled</mAdminState>
-			<HostName>10.130.131.124:1414</HostName>
+			<HostName>1.1.1.1:1111</HostName>
 			<QMname>IGW.DMZ1.PAYGW.1</QMname>
 			<CCSID>1208</CCSID>
 			<ChannelName>ESB.GW.EPS.T</ChannelName>
@@ -476,7 +476,7 @@
 		</SSLClientProfile>
 		<MQQM name="MQQM.TLS.1" xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/schemas/management">
 			<mAdminState>enabled</mAdminState>
-			<HostName>10.130.131.124:1414</HostName>
+			<HostName>1.1.1.1:1111</HostName>
 			<QMname>IGW.DMZ1.PAYGW.1</QMname>
 			<CCSID>1208</CCSID>
 			<ChannelName>ESB.GW.EPS.T</ChannelName>
@@ -507,7 +507,7 @@
 		</MQQM>
 		<MQQM name="MQQM.TLS.2" xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:dp="http://www.datapower.com/schemas/management">
 			<mAdminState>enabled</mAdminState>
-			<HostName>10.130.131.124:1414</HostName>
+			<HostName>1.1.1.1:1111</HostName>
 			<QMname>IGW.DMZ1.PAYGW.1</QMname>
 			<CCSID>1208</CCSID>
 			<ChannelName>ESB.GW.EPS.T</ChannelName>
