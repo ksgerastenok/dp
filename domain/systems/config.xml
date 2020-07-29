@@ -1,0 +1,3 @@
+<config>
+	<log name="dpmq://LOG.MQGR/?RequestQueue=EVENT.LOGGING" type="bin"/>
+</config>

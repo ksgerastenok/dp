@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<input type="bin"/>
+	<route name="local:///systems/DEPLOY.MQ.MPG/DEPLOY.MQ.MPG.REQUEST.ALL/MQSC/MQSCRS/route.xsl" type="xsl"/>
+	<transform name="local:///systems/DEPLOY.MQ.MPG/DEPLOY.MQ.MPG.REQUEST.ALL/MQSC/MQSCRS/transform.xsl" type="xsl"/>
+	<variables name="local:///systems/DEPLOY.MQ.MPG/DEPLOY.MQ.MPG.REQUEST.ALL/MQSC/MQSCRS/variables.xsl" type="xsl"/>
+	<output type="bin"/>
+</config>

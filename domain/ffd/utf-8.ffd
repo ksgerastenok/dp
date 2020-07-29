@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File name="object">
+	<Syntax name="default" encoding="utf-8"/>
+	<Field name="message" syntax="default" type="String"/>
+</File>
