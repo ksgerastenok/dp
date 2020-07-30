@@ -1,0 +1,6 @@
+---
+ansible_host: "1.1.1.1"
+ansible_port: "1111"
+ansible_user: "{{ dp_username }}"
+ansible_password: "{{ dp_password }}"
+ansible_connection: "local"

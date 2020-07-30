@@ -1,0 +1,75 @@
+---
+ansible_policy:
+  modify:
+    DomainSettings:
+      default:
+      - PasswordTreatment: "none"
+    MQQM:
+      DPO.QM_CB.1:
+      - mAdminState: "disabled"
+      DPO.QM_CB.2:
+      - mAdminState: "disabled"
+      DPO.QM_CB.TLS.1:
+      - mAdminState: "disabled"
+      DPO.QM_CB.TLS.2:
+      - mAdminState: "disabled"
+      DPO.QM_EPS.1:
+      - QMname: "IGW.TAUIN.PAYGW.1"
+      - HostName: "1.1.1.1:1111"
+      - ChannelName: "CHANNEL.NAME"
+      - UserName: "username"
+      - PermitSSLv3: "on"
+      - Heartbeat: "90"
+      - CacheTimeout: "110"
+      - TotalConnectionLimit: "500"
+      - InitialConnections: "1"
+      - RetryInterval: "1"
+      - RetryAttempts: "0"
+      - LongRetryInterval: "30"
+      DPO.QM_EPS.2:
+      - QMname: "IGW.TAUIN.PAYGW.1"
+      - HostName: "1.1.1.1:1111"
+      - ChannelName: "CHANNEL.NAME"
+      - UserName: "username"
+      - PermitSSLv3: "on"
+      - Heartbeat: "90"
+      - CacheTimeout: "110"
+      - TotalConnectionLimit: "500"
+      - InitialConnections: "1"
+      - RetryInterval: "1"
+      - RetryAttempts: "0"
+      - LongRetryInterval: "30"
+      DPO.QM_TLS.1:
+      - QMname: "IGW.DMZ1.PAYGW.1"
+      - HostName: "1.1.1.1:1111"
+      - ChannelName: "CHANNEL.NAME"
+      - UserName: "username"
+      - PermitSSLv3: "on"
+      - Heartbeat: "90"
+      - CacheTimeout: "110"
+      - TotalConnectionLimit: "500"
+      - InitialConnections: "1"
+      - RetryInterval: "1"
+      - RetryAttempts: "0"
+      - LongRetryInterval: "30"
+      DPO.QM_TLS.2:
+      - QMname: "IGW.DMZ1.PAYGW.1"
+      - HostName: "1.1.1.1:1111"
+      - ChannelName: "CHANNEL.NAME"
+      - UserName: "username"
+      - PermitSSLv3: "on"
+      - Heartbeat: "90"
+      - CacheTimeout: "110"
+      - TotalConnectionLimit: "500"
+      - InitialConnections: "1"
+      - RetryInterval: "1"
+      - RetryAttempts: "0"
+      - LongRetryInterval: "30"
+    MQSourceProtocolHandler:
+      H.QM_CB.1_Q_IN:
+      - mAdminState: "disabled"
+      H.QM_CB.2_Q_IN:
+      - mAdminState: "disabled"
+    MQQMGroup:
+      DPO.QMG_CB:
+      - mAdminState: "disabled"
