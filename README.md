@@ -1,6 +1,6 @@
 This repository contains:
-1. Ansible plugin for Datapower deploy with playbooks.
-2. Example of Universal Gateway for Datapower.
+- Ansible plugin for Datapower deploy with playbooks.
+- Universal Gateway for Datapower.
 
 Ansible plugin for Datapower has benefits:
 - Deployment policy now is in YML format instead of XCFG.
@@ -9,7 +9,7 @@ Ansible plugin for Datapower has benefits:
 - Modules are developed in microservice principal and could be combined to chain in different ways. New modules also can be developed quite easily. When new module is developed, it is able to access specific information of previous modules executed in chain.
 
 Universal Gateway for Datapower has benefits:
-- Processing rule contains multiple actions (for transformation, schema-validation, route, logging).
+- Processing rule contains multiple actions (e.g. transformation, schema-validation, routing, logging).
 - Not all of this action may be executed, so there is configuration file, that describes, which action have to be executed.
 - In one processing rule could be processed different formatted messages and processing action logic could be written in different ways: XSLT / JS / XQ / XSLTBIN - all of this cases could be defined in configuration file.
 - Different messages also should be processed in different ways, so configuration file can be defined for each type of message separately.
