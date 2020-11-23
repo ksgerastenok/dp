@@ -1,7 +1,7 @@
 # Datapower
 
 This repository contains:
-- Ansible plugin for Datapower deploy with playbooks.
+- Ansible playbook for Datapower deploy.
 - Universal Gateway for Datapower.
 
 Ansible plugin for Datapower has features:
