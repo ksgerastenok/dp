@@ -2,7 +2,7 @@
 
 This repository contains:
 - Ansible playbook for IBM Datapower deploy.
-- Universal Gateway for Datapower.
+- Universal Gateway for IBM Datapower.
 
 Ansible plugin for Datapower has features:
 - Deployment policy now is in YML format instead of XCFG.
