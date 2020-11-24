@@ -4,7 +4,7 @@ This repository contains:
 - Ansible playbook for IBM Datapower deploy.
 - Universal Gateway for IBM Datapower.
 
-Ansible playboom for IBM Datapower has features:
+Ansible playbook for IBM Datapower has features:
 - Deployment policy now is in YML format instead of XCFG.
 - Automatically generates the Deployment policy for MQQM, CryptoKey / CryptoCertificate, HTTPSourceProtocolHandler / HTTPSSourceProtocolHalndler, SQLDataSource objects based on current configuration (if there is no corresponding object definition in user-defined YML Deployment policy). So, it is quite safe to deploy configuration without any Deployment policy.
 - Checks if to be deployed export.zip contains new stand-specific objects (e.g. MQQM, CryptoKey / CryptoCertificate, HTTPSourceProtocolHandler / HTTPSSourceProtocolHalndler, SQLDataSource containing IP-addresses, paths to crypto keys and so on). If there is no corresponding object definition in user-defined YML Deployment policy, exception will be thrown. So, there will be no cases for misconfigured objects.
