@@ -8,6 +8,7 @@
 	<dp:output-mapping href="local:///ffd/base-16.ffd" type="ffd"/>
         <xsl:import href="local:///functions.xsl"/>
 	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" dp:escaping="minimum"/>
+
 	<xsl:template name="gw:ParseHDR">
 		<xsl:param name="pData"/>
 		<xsl:param name="pMode"/>
@@ -50,16 +51,16 @@
 					<xsl:when test="(($pMode/text() = 'BERFH2'))">
 						<xsl:value-of select="string-length($pData/text()) div 2"/>
 					</xsl:when>
-					<xsl:when test="(($pMode/text() = 'LERFH3'))">
-						<xsl:value-of select="string-length(substring-after(substring-before($pData/text(), '20'), '')) div 2 + string-length(substring-before(substring-after($pData/text(), '20'), '20')) div 2"/>
+					<xsl:when test="(($pMode/text() = 'LERFH1X'))">
+						<xsl:value-of select="(string-length(substring-after(substring-before($pData/text(), '20'), '')) + string-length(substring-before(substring-after($pData/text(), '20'), '20'))) div 2"/>
 					</xsl:when>
-					<xsl:when test="(($pMode/text() = 'BERFH3'))">
-						<xsl:value-of select="string-length(substring-after(substring-before($pData/text(), '20'), '')) div 2 + string-length(substring-before(substring-after($pData/text(), '20'), '20')) div 2"/>
+					<xsl:when test="(($pMode/text() = 'BERFH1X'))">
+						<xsl:value-of select="(string-length(substring-after(substring-before($pData/text(), '20'), '')) + string-length(substring-before(substring-after($pData/text(), '20'), '20'))) div 2"/>
 					</xsl:when>
-					<xsl:when test="(($pMode/text() = 'LERFH4'))">
+					<xsl:when test="(($pMode/text() = 'LERFH2X'))">
 						<xsl:value-of select="dp:radix-convert(concat(substring(substring($pData/text(), 1 + 0, 8), 1 + 6, 2), substring(substring($pData/text(), 1 + 0, 8), 1 + 4, 2), substring(substring($pData/text(), 1 + 0, 8), 1 + 2, 2), substring(substring($pData/text(), 1 + 0, 8), 1 + 0, 2)), 16, 10)"/>
 					</xsl:when>
-					<xsl:when test="(($pMode/text() = 'BERFH4'))">
+					<xsl:when test="(($pMode/text() = 'BERFH2X'))">
 						<xsl:value-of select="dp:radix-convert(concat(substring(substring($pData/text(), 1 + 0, 8), 1 + 0, 2), substring(substring($pData/text(), 1 + 0, 8), 1 + 2, 2), substring(substring($pData/text(), 1 + 0, 8), 1 + 4, 2), substring(substring($pData/text(), 1 + 0, 8), 1 + 6, 2)), 16, 10)"/>
 					</xsl:when>
 					<xsl:otherwise>
@@ -165,7 +166,7 @@
 								<xsl:value-of select="substring($pData/text(), 1 + 0 + $vLength/text() * 2, string-length($pData/text()) - (1 + 0 + $vLength/text() * 2) + 1)"/>
 							</xsl:with-param>
 							<xsl:with-param name="pMode">
-								<xsl:value-of select="'LEXQH1'"/>
+								<xsl:value-of select="$pMode/text()"/>
 							</xsl:with-param>
 						</xsl:call-template>
 					</xsl:when>
@@ -263,7 +264,7 @@
 								<xsl:value-of select="substring($pData/text(), 1 + 0 + $vLength/text() * 2, string-length($pData/text()) - (1 + 0 + $vLength/text() * 2) + 1)"/>
 							</xsl:with-param>
 							<xsl:with-param name="pMode">
-								<xsl:value-of select="'BEXQH1'"/>
+								<xsl:value-of select="$pMode/text()"/>
 							</xsl:with-param>
 						</xsl:call-template>
 					</xsl:when>
@@ -376,7 +377,7 @@
 								<xsl:value-of select="substring($pData/text(), 1 + 0 + $vLength/text() * 2, string-length($pData/text()) - (1 + 0 + $vLength/text() * 2) + 1)"/>
 							</xsl:with-param>
 							<xsl:with-param name="pMode">
-								<xsl:value-of select="'LEXQH2'"/>
+								<xsl:value-of select="$pMode/text()"/>
 							</xsl:with-param>
 						</xsl:call-template>
 					</xsl:when>
@@ -489,7 +490,7 @@
 								<xsl:value-of select="substring($pData/text(), 1 + 0 + $vLength/text() * 2, string-length($pData/text()) - (1 + 0 + $vLength/text() * 2) + 1)"/>
 							</xsl:with-param>
 							<xsl:with-param name="pMode">
-								<xsl:value-of select="'BEXQH2'"/>
+								<xsl:value-of select="$pMode/text()"/>
 							</xsl:with-param>
 						</xsl:call-template>
 					</xsl:when>
@@ -537,7 +538,7 @@
 								<xsl:value-of select="substring($pData/text(), 1 + 0 + $vLength/text() * 2, string-length($pData/text()) - (1 + 0 + $vLength/text() * 2) + 1)"/>
 							</xsl:with-param>
 							<xsl:with-param name="pMode">
-								<xsl:value-of select="'LEMDE1'"/>
+								<xsl:value-of select="$pMode/text()"/>
 							</xsl:with-param>
 						</xsl:call-template>
 					</xsl:when>
@@ -585,7 +586,7 @@
 								<xsl:value-of select="substring($pData/text(), 1 + 0 + $vLength/text() * 2, string-length($pData/text()) - (1 + 0 + $vLength/text() * 2) + 1)"/>
 							</xsl:with-param>
 							<xsl:with-param name="pMode">
-								<xsl:value-of select="'BEMDE1'"/>
+								<xsl:value-of select="$pMode/text()"/>
 							</xsl:with-param>
 						</xsl:call-template>
 					</xsl:when>
@@ -633,7 +634,7 @@
 								<xsl:value-of select="substring($pData/text(), 1 + 0 + $vLength/text() * 2, string-length($pData/text()) - (1 + 0 + $vLength/text() * 2) + 1)"/>
 							</xsl:with-param>
 							<xsl:with-param name="pMode">
-								<xsl:value-of select="'LEMDE2'"/>
+								<xsl:value-of select="$pMode/text()"/>
 							</xsl:with-param>
 						</xsl:call-template>
 					</xsl:when>
@@ -681,7 +682,7 @@
 								<xsl:value-of select="substring($pData/text(), 1 + 0 + $vLength/text() * 2, string-length($pData/text()) - (1 + 0 + $vLength/text() * 2) + 1)"/>
 							</xsl:with-param>
 							<xsl:with-param name="pMode">
-								<xsl:value-of select="'BEMDE2'"/>
+								<xsl:value-of select="$pMode/text()"/>
 							</xsl:with-param>
 						</xsl:call-template>
 					</xsl:when>
@@ -714,7 +715,7 @@
 										<xsl:value-of select="substring($pData/text(), 1 + 64, ($vLength/text() * 2) - (1 + 64) + 1)"/>
 									</xsl:with-param>
 									<xsl:with-param name="pMode">
-										<xsl:value-of select="'LERFH3'"/>
+										<xsl:value-of select="concat($pMode/text(), 'X')"/>
 									</xsl:with-param>
 								</xsl:call-template>
 							</xsl:element>
@@ -724,7 +725,7 @@
 								<xsl:value-of select="substring($pData/text(), 1 + 0 + $vLength/text() * 2, string-length($pData/text()) - (1 + 0 + $vLength/text() * 2) + 1)"/>
 							</xsl:with-param>
 							<xsl:with-param name="pMode">
-								<xsl:value-of select="'LERFH1'"/>
+								<xsl:value-of select="$pMode/text()"/>
 							</xsl:with-param>
 						</xsl:call-template>
 					</xsl:when>
@@ -757,7 +758,7 @@
 										<xsl:value-of select="substring($pData/text(), 1 + 64, ($vLength/text() * 2) - (1 + 64) + 1)"/>
 									</xsl:with-param>
 									<xsl:with-param name="pMode">
-										<xsl:value-of select="'BERFH3'"/>
+										<xsl:value-of select="concat($pMode/text(), 'X')"/>
 									</xsl:with-param>
 								</xsl:call-template>
 							</xsl:element>
@@ -767,7 +768,7 @@
 								<xsl:value-of select="substring($pData/text(), 1 + 0 + $vLength/text() * 2, string-length($pData/text()) - (1 + 0 + $vLength/text() * 2) + 1)"/>
 							</xsl:with-param>
 							<xsl:with-param name="pMode">
-								<xsl:value-of select="'BERFH1'"/>
+								<xsl:value-of select="$pMode/text()"/>
 							</xsl:with-param>
 						</xsl:call-template>
 					</xsl:when>
@@ -803,7 +804,7 @@
 										<xsl:value-of select="substring($pData/text(), 1 + 72, ($vLength/text() * 2) - (1 + 72) + 1)"/>
 									</xsl:with-param>
 									<xsl:with-param name="pMode">
-										<xsl:value-of select="'LERFH4'"/>
+										<xsl:value-of select="concat($pMode/text(), 'X')"/>
 									</xsl:with-param>
 								</xsl:call-template>
 							</xsl:element>
@@ -813,7 +814,7 @@
 								<xsl:value-of select="substring($pData/text(), 1 + 0 + $vLength/text() * 2, string-length($pData/text()) - (1 + 0 + $vLength/text() * 2) + 1)"/>
 							</xsl:with-param>
 							<xsl:with-param name="pMode">
-								<xsl:value-of select="'LERFH2'"/>
+								<xsl:value-of select="$pMode/text()"/>
 							</xsl:with-param>
 						</xsl:call-template>
 					</xsl:when>
@@ -849,7 +850,7 @@
 										<xsl:value-of select="substring($pData/text(), 1 + 72, ($vLength/text() * 2) - (1 + 72) + 1)"/>
 									</xsl:with-param>
 									<xsl:with-param name="pMode">
-										<xsl:value-of select="'BERFH4'"/>
+										<xsl:value-of select="concat($pMode/text(), 'X')"/>
 									</xsl:with-param>
 								</xsl:call-template>
 							</xsl:element>
@@ -859,11 +860,11 @@
 								<xsl:value-of select="substring($pData/text(), 1 + 0 + $vLength/text() * 2, string-length($pData/text()) - (1 + 0 + $vLength/text() * 2) + 1)"/>
 							</xsl:with-param>
 							<xsl:with-param name="pMode">
-								<xsl:value-of select="'BERFH2'"/>
+								<xsl:value-of select="$pMode/text()"/>
 							</xsl:with-param>
 						</xsl:call-template>
 					</xsl:when>
-					<xsl:when test="(($pMode/text() = 'LERFH3'))">
+					<xsl:when test="(($pMode/text() = 'LERFH1X'))">
 						<xsl:element name="NameValue">
 							<xsl:element name="Name">
 								<xsl:value-of select="normalize-space(dp:binary-decode(dp:radix-convert(substring-after(substring-before($pData/text(), '20'), ''), 16, 64)))"/>
@@ -877,11 +878,11 @@
 								<xsl:value-of select="substring($pData/text(), 1 + 4 + $vLength/text() * 2, string-length($pData/text()) - (1 + 4 + $vLength/text() * 2) + 1)"/>
 							</xsl:with-param>
 							<xsl:with-param name="pMode">
-								<xsl:value-of select="'LERFH3'"/>
+								<xsl:value-of select="$pMode/text()"/>
 							</xsl:with-param>
 						</xsl:call-template>
 					</xsl:when>
-					<xsl:when test="(($pMode/text() = 'BERFH3'))">
+					<xsl:when test="(($pMode/text() = 'BERFH1X'))">
 						<xsl:element name="NameValue">
 							<xsl:element name="Name">
 								<xsl:value-of select="normalize-space(dp:binary-decode(dp:radix-convert(substring-after(substring-before($pData/text(), '20'), ''), 16, 64)))"/>
@@ -895,11 +896,11 @@
 								<xsl:value-of select="substring($pData/text(), 1 + 4 + $vLength/text() * 2, string-length($pData/text()) - (1 + 4 + $vLength/text() * 2) + 1)"/>
 							</xsl:with-param>
 							<xsl:with-param name="pMode">
-								<xsl:value-of select="'BERFH3'"/>
+								<xsl:value-of select="$pMode/text()"/>
 							</xsl:with-param>
 						</xsl:call-template>
 					</xsl:when>
-					<xsl:when test="(($pMode/text() = 'LERFH4'))">
+					<xsl:when test="(($pMode/text() = 'LERFH2X'))">
 						<xsl:element name="NameValue">
 							<xsl:copy-of select="dp:parse(dp:binary-decode(dp:radix-convert(substring($pData/text(), 1 + 8, $vLength/text() * 2), 16, 64)))"/>
 						</xsl:element>
@@ -908,11 +909,11 @@
 								<xsl:value-of select="substring($pData/text(), 1 + 8 + $vLength/text() * 2, string-length($pData/text()) - (1 + 8 + $vLength/text() * 2) + 1)"/>
 							</xsl:with-param>
 							<xsl:with-param name="pMode">
-								<xsl:value-of select="'LERFH4'"/>
+								<xsl:value-of select="$pMode/text()"/>
 							</xsl:with-param>
 						</xsl:call-template>
 					</xsl:when>
-					<xsl:when test="(($pMode/text() = 'BERFH4'))">
+					<xsl:when test="(($pMode/text() = 'BERFH2X'))">
 						<xsl:element name="NameValue">
 							<xsl:copy-of select="dp:parse(dp:binary-decode(dp:radix-convert(substring($pData/text(), 1 + 8, $vLength/text() * 2), 16, 64)))"/>
 						</xsl:element>
@@ -921,7 +922,7 @@
 								<xsl:value-of select="substring($pData/text(), 1 + 8 + $vLength/text() * 2, string-length($pData/text()) - (1 + 8 + $vLength/text() * 2) + 1)"/>
 							</xsl:with-param>
 							<xsl:with-param name="pMode">
-								<xsl:value-of select="'BERFH4'"/>
+								<xsl:value-of select="$pMode/text()"/>
 							</xsl:with-param>
 						</xsl:call-template>
 					</xsl:when>
@@ -940,6 +941,7 @@
 		</xsl:variable>
 		<xsl:copy-of select="$vResult/header/*"/>
 	</xsl:template>
+
 	<xsl:template name="gw:ParseHEX">
 		<xsl:param name="pData"/>
 		<xsl:variable name="vLength">
@@ -1352,9 +1354,16 @@
 							<xsl:with-param name="pHeader">
 								<xsl:element name="header">
 									<xsl:attribute name="name">
-										<xsl:value-of select="'NONE'"/>
+										<xsl:value-of select="'MQNONE'"/>
 									</xsl:attribute>
-									<xsl:value-of select="substring($pData/text(), 1 + 0, $vLength/text() * 2)"/>
+									<xsl:call-template name="gw:ParseHDR">
+										<xsl:with-param name="pHeader">
+											<xsl:value-of select="substring($pData/text(), 1 + 0, $vLength/text() * 2)"/>
+										</xsl:with-param>
+										<xsl:with-param name="pMode">
+											<xsl:value-of select="'MQNONEX'"/>
+										</xsl:with-param>
+									</xsl:call-template>
 								</xsl:element>
 							</xsl:with-param>
 							<xsl:with-param name="pType">

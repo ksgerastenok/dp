@@ -1,6 +1,7 @@
 //********************************************************************************************************************//
-//***                                        MQ Header Parser for DataPower                                        ***//
+//***                                      MQ Header Parser for IBM DataPower                                      ***//
 //********************************************************************************************************************//
+
 function ParseHDR(data, mode) {
 	var result, length;
 
@@ -98,9 +99,9 @@ function ParseHDR(data, mode) {
 				result += Buffer("</ApplOriginData>", "utf-8").toString("utf-8");
 				result += Buffer("</MsgDesc>", "utf-8").toString("utf-8");
 				result += Buffer("</MQXQH>", "utf-8").toString("utf-8");
-				result += ParseHDR(data.substr(0 + length * 2, data.length - (0 + length * 2)), "LEXQH1");
+				result += ParseHDR(data.substr(0 + length * 2, data.length - (0 + length * 2)), mode);
+				break;
 			}
-			break;
 			case String("BEXQH1"): {
 				length += data.length / 2;
 				result += Buffer("<MQXQH>", "utf-8").toString("utf-8");
@@ -191,9 +192,9 @@ function ParseHDR(data, mode) {
 				result += Buffer("</ApplOriginData>", "utf-8").toString("utf-8");
 				result += Buffer("</MsgDesc>", "utf-8").toString("utf-8");
 				result += Buffer("</MQXQH>", "utf-8").toString("utf-8");
-				result += ParseHDR(data.substr(0 + length * 2, data.length - (0 + length * 2)), "BEXQH1");
+				result += ParseHDR(data.substr(0 + length * 2, data.length - (0 + length * 2)), mode);
+				break;
 			}
-			break;
 			case String("LEXQH2"): {
 				length += data.length / 2;
 				result += Buffer("<MQXQH>", "utf-8").toString("utf-8");
@@ -299,9 +300,9 @@ function ParseHDR(data, mode) {
 				result += Buffer("</OriginalLength>", "utf-8").toString("utf-8");
 				result += Buffer("</MsgDesc>", "utf-8").toString("utf-8");
 				result += Buffer("</MQXQH>", "utf-8").toString("utf-8");
-				result += ParseHDR(data.substr(0 + length * 2, data.length - (0 + length * 2)), "LEXQH2");
+				result += ParseHDR(data.substr(0 + length * 2, data.length - (0 + length * 2)), mode);
+				break;
 			}
-			break;
 			case String("BEXQH2"): {
 				length += data.length / 2;
 				result += Buffer("<MQXQH>", "utf-8").toString("utf-8");
@@ -407,9 +408,9 @@ function ParseHDR(data, mode) {
 				result += Buffer("</OriginalLength>", "utf-8").toString("utf-8");
 				result += Buffer("</MsgDesc>", "utf-8").toString("utf-8");
 				result += Buffer("</MQXQH>", "utf-8").toString("utf-8");
-				result += ParseHDR(data.substr(0 + length * 2, data.length - (0 + length * 2)), "BEXQH2");
+				result += ParseHDR(data.substr(0 + length * 2, data.length - (0 + length * 2)), mode);
+				break;
 			}
-			break;
 			case String("LEMDE1"): {
 				length += data.length / 2;
 				result += Buffer("<MQMDE>", "utf-8").toString("utf-8");
@@ -450,9 +451,9 @@ function ParseHDR(data, mode) {
 				result += Buffer(data.substr(136, 8), "hex").readInt32LE().toString(10);
 				result += Buffer("</OriginalLength>", "utf-8").toString("utf-8");
 				result += Buffer("</MQMDE>", "utf-8").toString("utf-8");
-				result += ParseHDR(data.substr(0 + length * 2, data.length - (0 + length * 2)), "LEMDE1");
+				result += ParseHDR(data.substr(0 + length * 2, data.length - (0 + length * 2)), mode);
+				break;
 			}
-			break;
 			case String("BEMDE1"): {
 				length += data.length / 2;
 				result += Buffer("<MQMDE>", "utf-8").toString("utf-8");
@@ -493,9 +494,9 @@ function ParseHDR(data, mode) {
 				result += Buffer(data.substr(136, 8), "hex").readInt32BE().toString(10);
 				result += Buffer("</OriginalLength>", "utf-8").toString("utf-8");
 				result += Buffer("</MQMDE>", "utf-8").toString("utf-8");
-				result += ParseHDR(data.substr(0 + length * 2, data.length - (0 + length * 2)), "BEMDE1");
+				result += ParseHDR(data.substr(0 + length * 2, data.length - (0 + length * 2)), mode);
+				break;
 			}
-			break;
 			case String("LEMDE2"): {
 				length += data.length / 2;
 				result += Buffer("<MQMDE>", "utf-8").toString("utf-8");
@@ -536,9 +537,9 @@ function ParseHDR(data, mode) {
 				result += Buffer(data.substr(136, 8), "hex").readInt32LE().toString(10);
 				result += Buffer("</OriginalLength>", "utf-8").toString("utf-8");
 				result += Buffer("</MQMDE>", "utf-8").toString("utf-8");
-				result += ParseHDR(data.substr(0 + length * 2, data.length - (0 + length * 2)), "LEMDE2");
+				result += ParseHDR(data.substr(0 + length * 2, data.length - (0 + length * 2)), mode);
+				break;
 			}
-			break;
 			case String("BEMDE2"): {
 				length += data.length / 2;
 				result += Buffer("<MQMDE>", "utf-8").toString("utf-8");
@@ -579,9 +580,9 @@ function ParseHDR(data, mode) {
 				result += Buffer(data.substr(136, 8), "hex").readInt32BE().toString(10);
 				result += Buffer("</OriginalLength>", "utf-8").toString("utf-8");
 				result += Buffer("</MQMDE>", "utf-8").toString("utf-8");
-				result += ParseHDR(data.substr(0 + length * 2, data.length - (0 + length * 2)), "BEMDE2");
+				result += ParseHDR(data.substr(0 + length * 2, data.length - (0 + length * 2)), mode);
+				break;
 			}
-			break;
 			case String("LERFH1"): {
 				length += data.length / 2;
 				result += Buffer("<MQRFH>", "utf-8").toString("utf-8");
@@ -607,12 +608,12 @@ function ParseHDR(data, mode) {
 				result += Buffer(data.substr(56, 8), "hex").readInt32LE().toString(10);
 				result += Buffer("</Flags>", "utf-8").toString("utf-8");
 				result += Buffer("<NameValueString>", "utf-8").toString("utf-8");
-				result += ParseHDR(data.substr(64, length * 2 - 64), "LERFH3");
+				result += ParseHDR(data.substr(64, length * 2 - 64), mode.concat("X"));
 				result += Buffer("</NameValueString>", "utf-8").toString("utf-8");
 				result += Buffer("</MQRFH>", "utf-8").toString("utf-8");
-				result += ParseHDR(data.substr(0 + length * 2, data.length - (0 + length * 2)), "LERFH1");
+				result += ParseHDR(data.substr(0 + length * 2, data.length - (0 + length * 2)), mode);
+				break;
 			}
-			break;
 			case String("BERFH1"): {
 				length += data.length / 2;
 				result += Buffer("<MQRFH>", "utf-8").toString("utf-8");
@@ -638,12 +639,12 @@ function ParseHDR(data, mode) {
 				result += Buffer(data.substr(56, 8), "hex").readInt32BE().toString(10);
 				result += Buffer("</Flags>", "utf-8").toString("utf-8");
 				result += Buffer("<NameValueString>", "utf-8").toString("utf-8");
-				result += ParseHDR(data.substr(64, length * 2 - 64), "BERFH3");
+				result += ParseHDR(data.substr(64, length * 2 - 64), mode.concat("X"));
 				result += Buffer("</NameValueString>", "utf-8").toString("utf-8");
 				result += Buffer("</MQRFH>", "utf-8").toString("utf-8");
-				result += ParseHDR(data.substr(0 + length * 2, data.length - (0 + length * 2)), "BERFH1");
+				result += ParseHDR(data.substr(0 + length * 2, data.length - (0 + length * 2)), mode);
+				break;
 			}
-			break;
 			case String("LERFH2"): {
 				length += data.length / 2;
 				result += Buffer("<MQRFH2>", "utf-8").toString("utf-8");
@@ -672,12 +673,12 @@ function ParseHDR(data, mode) {
 				result += Buffer(data.substr(64, 8), "hex").readInt32LE().toString(10);
 				result += Buffer("</NameValueCCSID>", "utf-8").toString("utf-8");
 				result += Buffer("<NameValueData>", "utf-8").toString("utf-8");
-				result += ParseHDR(data.substr(72, length * 2 - 72), "LERFH4");
+				result += ParseHDR(data.substr(72, length * 2 - 72), mode.concat("X"));
 				result += Buffer("</NameValueData>", "utf-8").toString("utf-8");
 				result += Buffer("</MQRFH2>", "utf-8").toString("utf-8");
-				result += ParseHDR(data.substr(0 + length * 2, data.length - (0 + length * 2)), "LERFH2");
+				result += ParseHDR(data.substr(0 + length * 2, data.length - (0 + length * 2)), mode);
+				break;
 			}
-			break;
 			case String("BERFH2"): {
 				length += data.length / 2;
 				result += Buffer("<MQRFH2>", "utf-8").toString("utf-8");
@@ -706,14 +707,14 @@ function ParseHDR(data, mode) {
 				result += Buffer(data.substr(64, 8), "hex").readInt32BE().toString(10);
 				result += Buffer("</NameValueCCSID>", "utf-8").toString("utf-8");
 				result += Buffer("<NameValueData>", "utf-8").toString("utf-8");
-				result += ParseHDR(data.substr(72, length * 2 - 72), "BERFH4");
+				result += ParseHDR(data.substr(72, length * 2 - 72), mode.concat("X"));
 				result += Buffer("</NameValueData>", "utf-8").toString("utf-8");
 				result += Buffer("</MQRFH2>", "utf-8").toString("utf-8");
-				result += ParseHDR(data.substr(0 + length * 2, data.length - (0 + length * 2)), "BERFH2");
+				result += ParseHDR(data.substr(0 + length * 2, data.length - (0 + length * 2)), mode);
+				break;
 			}
-			break;
-			case String("LERFH3"): {
-				length += data.split("20")[0].length / 2 + data.split("20")[1].length / 2;
+			case String("LERFH1X"): {
+				length += (data.split("20")[0].length + data.split("20")[1].length) / 2;
 				result += Buffer("<NameValue>", "utf-8").toString("utf-8");
 				result += Buffer("<Name>", "utf-8").toString("utf-8");
 				result += Buffer(data.split("20")[0], "hex").toString("utf-8");
@@ -722,11 +723,11 @@ function ParseHDR(data, mode) {
 				result += Buffer(data.split("20")[1], "hex").toString("utf-8");
 				result += Buffer("</Value>", "utf-8").toString("utf-8");
 				result += Buffer("</NameValue>", "utf-8").toString("utf-8");
-				result += ParseHDR(data.substr(4 + length * 2, data.length - (4 + length * 2)), "LERFH3");
+				result += ParseHDR(data.substr(4 + length * 2, data.length - (4 + length * 2)), mode);
+				break;
 			}
-			break;
-			case String("BERFH3"): {
-				length += data.split("20")[0].length / 2 + data.split("20")[1].length / 2;
+			case String("BERFH1X"): {
+				length += (data.split("20")[0].length + data.split("20")[1].length) / 2;
 				result += Buffer("<NameValue>", "utf-8").toString("utf-8");
 				result += Buffer("<Name>", "utf-8").toString("utf-8");
 				result += Buffer(data.split("20")[0], "hex").toString("utf-8");
@@ -735,30 +736,30 @@ function ParseHDR(data, mode) {
 				result += Buffer(data.split("20")[1], "hex").toString("utf-8");
 				result += Buffer("</Value>", "utf-8").toString("utf-8");
 				result += Buffer("</NameValue>", "utf-8").toString("utf-8");
-				result += ParseHDR(data.substr(4 + length * 2, data.length - (4 + length * 2)), "BERFH3");
+				result += ParseHDR(data.substr(4 + length * 2, data.length - (4 + length * 2)), mode);
+				break;
 			}
-			break;
-			case String("LERFH4"): {
+			case String("LERFH2X"): {
 				length += Buffer(data.substr(0, 8), "hex").readInt32LE();
 				result += Buffer("<NameValue>", "utf-8").toString("utf-8");
 				result += Buffer(data.substr(8, length * 2), "hex").toString("utf-8");
 				result += Buffer("</NameValue>", "utf-8").toString("utf-8");
-				result += ParseHDR(data.substr(8 + length * 2, data.length - (8 + length * 2)), "LERFH4");
+				result += ParseHDR(data.substr(8 + length * 2, data.length - (8 + length * 2)), mode);
+				break;
 			}
-			break;
-			case String("BERFH4"): {
+			case String("BERFH2X"): {
 				length += Buffer(data.substr(0, 8), "hex").readInt32BE();
 				result += Buffer("<NameValue>", "utf-8").toString("utf-8");
 				result += Buffer(data.substr(8, length * 2), "hex").toString("utf-8");
 				result += Buffer("</NameValue>", "utf-8").toString("utf-8");
-				result += ParseHDR(data.substr(8 + length * 2, data.length - (8 + length * 2)), "BERFH4");
+				result += ParseHDR(data.substr(8 + length * 2, data.length - (8 + length * 2)), mode);
+				break;
 			}
-			break;
 			default: {
 				length += data.length / 2;
 				result += ParseHDR(data.substr(0 + length * 2, data.length - (0 + length * 2)), mode);
+				break;
 			}
-			break;
 		}
 	}
 
@@ -776,80 +777,80 @@ function ParseHEX(data) {
 				length += 428;
 				result += ParseHEX(data.substr(0 + length * 2, data.length - (0 + length * 2)));
 				require("header-metadata").current.set("MQXQH", ParseHDR(data.substr(0, length * 2), "LEXQH1"));
+				break;
 			}
-			break;
 			case String("5851482000000001"): {
 				length += 428;
 				result += ParseHEX(data.substr(0 + length * 2, data.length - (0 + length * 2)));
 				require("header-metadata").current.set("MQXQH", ParseHDR(data.substr(0, length * 2), "BEXQH1"));
+				break;
 			}
-			break;
 			case String("5851482002000000"): {
 				length += 468;
 				result += ParseHEX(data.substr(0 + length * 2, data.length - (0 + length * 2)));
 				require("header-metadata").current.set("MQXQH", ParseHDR(data.substr(0, length * 2), "LEXQH2"));
+				break;
 			}
-			break;
 			case String("5851482000000002"): {
 				length += 468;
 				result += ParseHEX(data.substr(0 + length * 2, data.length - (0 + length * 2)));
 				require("header-metadata").current.set("MQXQH", ParseHDR(data.substr(0, length * 2), "BEXQH2"));
+				break;
 			}
-			break;
 			case String("4d44452001000000"): {
 				length += Buffer(data.substr(16, 8), "hex").readInt32LE();
 				result += ParseHEX(data.substr(0 + length * 2, data.length - (0 + length * 2)));
 				require("header-metadata").current.set("MQMDE", ParseHDR(data.substr(0, length * 2), "LEMDE1"));
+				break;
 			}
-			break;
 			case String("4d44452000000001"): {
 				length += Buffer(data.substr(16, 8), "hex").readInt32BE();
 				result += ParseHEX(data.substr(0 + length * 2, data.length - (0 + length * 2)));
 				require("header-metadata").current.set("MQMDE", ParseHDR(data.substr(0, length * 2), "BEMDE1"));
+				break;
 			}
-			break;
 			case String("4d44452002000000"): {
 				length += Buffer(data.substr(16, 8), "hex").readInt32LE();
 				result += ParseHEX(data.substr(0 + length * 2, data.length - (0 + length * 2)));
 				require("header-metadata").current.set("MQMDE", ParseHDR(data.substr(0, length * 2), "LEMDE2"));
+				break;
 			}
-			break;
 			case String("4d44452000000002"): {
 				length += Buffer(data.substr(16, 8), "hex").readInt32BE();
 				result += ParseHEX(data.substr(0 + length * 2, data.length - (0 + length * 2)));
 				require("header-metadata").current.set("MQMDE", ParseHDR(data.substr(0, length * 2), "BEMDE2"));
+				break;
 			}
-			break;
 			case String("5246482001000000"): {
 				length += Buffer(data.substr(16, 8), "hex").readInt32LE();
 				result += ParseHEX(data.substr(0 + length * 2, data.length - (0 + length * 2)));
 				require("header-metadata").current.set("MQRFH", ParseHDR(data.substr(0, length * 2), "LERFH1"));
+				break;
 			}
-			break;
 			case String("5246482000000001"): {
 				length += Buffer(data.substr(16, 8), "hex").readInt32BE();
 				result += ParseHEX(data.substr(0 + length * 2, data.length - (0 + length * 2)));
 				require("header-metadata").current.set("MQRFH", ParseHDR(data.substr(0, length * 2), "BERFH1"));
+				break;
 			}
-			break;
 			case String("5246482002000000"): {
 				length += Buffer(data.substr(16, 8), "hex").readInt32LE();
 				result += ParseHEX(data.substr(0 + length * 2, data.length - (0 + length * 2)));
 				require("header-metadata").current.set("MQRFH2", ParseHDR(data.substr(0, length * 2), "LERFH2"));
+				break;
 			}
-			break;
 			case String("5246482000000002"): {
 				length += Buffer(data.substr(16, 8), "hex").readInt32BE();
 				result += ParseHEX(data.substr(0 + length * 2, data.length - (0 + length * 2)));
 				require("header-metadata").current.set("MQRFH2", ParseHDR(data.substr(0, length * 2), "BERFH2"));
+				break;
 			}
-			break;
 			default: {
 				length += 0;
 				result += String(data.substr(0 + length * 2, data.length - (0 + length * 2)));
-				require("header-metadata").current.set("NONE", String(data.substr(0, length * 2)));
+				require("header-metadata").current.set("MQNONE", ParseHDR(data.substr(0, length * 2), "MQNONEX"));
+				break;
 			}
-			break;
 		}
 	}
 
@@ -859,16 +860,18 @@ function ParseHEX(data) {
 function Main() {
 	var result;
 
-	session.input.readAsBuffer(function (error, buffer) {
-		var result;
+	session.input.readAsBuffer(
+		function (error, buffer) {
+			var result;
 
-		if((error != null)) {
-			session.reject(error.message);
+			if((error != null)) {
+				session.reject(error.message);
+			}
+			session.output.write(Buffer(ParseHEX(buffer.toString("hex")), "hex"));
+
+			return(result);
 		}
-		session.output.write(Buffer(ParseHEX(buffer.toString("hex")), "hex"));
-
-		return(result);
-	});
+	);
 
 	return(result);
 }
